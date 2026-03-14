@@ -12,6 +12,7 @@ import { useLocalStorage } from 'usehooks-ts';
 
 import { getSystemTheme, toggleAttribute } from '@/utils/layout';
 import { debounce } from '@/helpers/debounce';
+import { ToastContainer } from 'react-toastify';
 
 export type LayoutThemeType = 'light' | 'dark' | 'system';
 
@@ -144,6 +145,7 @@ const LayoutProvider = ({ children }: { children: ReactNode }) => {
         [settings, updateSettings, reset]
       )}
     >
+      <ToastContainer />
       {children}
     </LayoutContext>
   );
