@@ -5,11 +5,11 @@ import Hero from './components/Hero';
 import Feature from './components/Feature';
 import Works from './components/Works';
 import About from './components/About';
-import Contact from './components/Contact';
 import Pricing from './components/Pricing';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
-export const metadata: Metadata = { title: 'One Page Landing' };
+export const metadata: Metadata = { title: 'Bệnh viện Phổi Khánh Hòa' };
 const Page = () => {
   return (
     <>
@@ -19,8 +19,8 @@ const Page = () => {
       <Works />
       <About />
       <Pricing />
-      <Contact />
       <Footer />
+      <ScrollToTop />
     </>
   );
 };

@@ -10,20 +10,17 @@ type TrafficItem = {
 };
 
 const trafficData: TrafficItem[] = [
-  { id: 1, label: 'Google', value: '54,963', percentage: 89, color: 'bg-primary' },
-  { id: 2, label: 'Meta', value: '30,478', percentage: 55, color: 'bg-sky-500' },
-  { id: 3, label: 'Social Media', value: '54,963', percentage: 81, color: 'bg-warning' },
-  { id: 4, label: 'Direct Message', value: '54,963', percentage: 63, color: 'bg-success' },
-  { id: 5, label: 'Others', value: '54,963', percentage: 25, color: 'bg-default-600' },
+  { id: 1, label: 'COPD', value: '54,963', percentage: 89, color: 'bg-primary' },
+  { id: 2, label: 'HEN', value: '30,478', percentage: 55, color: 'bg-sky-500' },
 ];
 
 const TrafficSource: React.FC = () => {
   return (
     <div className="card">
       <div className="card-header flex justify-between items-center">
-        <h6 className="card-title">Traffic Source</h6>
-        <Link href="#" className="text-primary underline">
-          See More
+        <h6 className="card-title">Thống kê bệnh nhân COPD - Hen phế quản</h6>
+        <Link href="/admin/copd/analytics" className="text-primary underline">
+          Xem chi tiết
         </Link>
       </div>
 

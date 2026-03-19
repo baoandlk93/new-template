@@ -1,6 +1,10 @@
 import React from 'react';
-import { LuCheckCheck, LuCrown, LuGoal, LuGraduationCap, LuLuggage, LuX } from 'react-icons/lu';
-
+import { LuCheckCheck, LuX } from 'react-icons/lu';
+import { SiWorldhealthorganization } from 'react-icons/si';
+import { RiLungsLine } from 'react-icons/ri';
+import { FaLungsVirus } from 'react-icons/fa6';
+import { GiHealthNormal } from 'react-icons/gi';
+import Link from 'next/link';
 type Feature = {
   name: string;
   included: boolean;
@@ -16,97 +20,84 @@ type PricingPlan = {
   iconColor: string;
   buttonText: string;
   highlight?: string;
+  href: string;
   features: Feature[];
 };
 
 const pricingPlans: PricingPlan[] = [
   {
     id: 1,
-    title: 'Lite',
+    title: 'Khám bệnh lý phổi',
     description: 'Perfect plan for Lite',
-    price: '9.99',
-    period: '/Monthly',
-    icon: LuGoal,
+    price: '200',
+    period: '/Mỗi tháng',
+    icon: RiLungsLine,
     iconColor: 'text-success',
-    buttonText: 'Purchase Now',
+    buttonText: 'Đặt lịch ngay',
+    href: '/booking',
     features: [
-      { name: '<b>3</b> Projects', included: true },
-      { name: '<b>299 </b>Customers', included: true },
-      { name: 'Scalable Bandwidth', included: true },
-      { name: 'No Team Account', included: true },
-      { name: 'In app messaging', included: false },
-      { name: '5 FTP Login', included: false },
-      { name: 'Detailed Analytics', included: false },
-      { name: 'Custom Domain', included: false },
-      { name: 'Smart Workflow', included: false },
-      { name: 'IQ test', included: false },
+      { name: 'Các bệnh đường hô hấp (Ảnh hưởng đến ống dẫn khí)', included: true },
+      { name: 'Các bệnh về mô phổi (Ảnh hưởng đến phế nang/nhu mô phổi)', included: true },
+      { name: 'Các bệnh tuần hoàn phổi (Ảnh hưởng đến mạch máu phổi)', included: true },
+      { name: 'Các bệnh về màng phổi', included: true },
+      { name: 'Ung thư phổi', included: true },
     ],
   },
   {
     id: 2,
-    title: 'Professional',
+    title: 'Sàng lọc và chẩn đoán lao',
     description: 'For users who want to do more.',
-    price: '29.99',
-    period: '/Monthly',
-    icon: LuGraduationCap,
+    price: '300',
+    period: '/Mỗi đợt',
+    icon: FaLungsVirus,
     iconColor: 'text-secondary',
-    buttonText: 'Purchase Now',
+    buttonText: 'Đặt lịch ngay',
+    href: '/booking',
     features: [
-      { name: '<b>3</b> Projects', included: true },
-      { name: '<b>299</b> Customers', included: true },
-      { name: 'Scalable Bandwidth', included: true },
-      { name: '<b>3</b> No Team Account', included: true },
-      { name: 'In app messaging', included: true },
-      { name: '5 FTP Login', included: false },
-      { name: 'Detailed Analytics', included: false },
-      { name: 'Custom Domain', included: false },
-      { name: 'Smart Workflow', included: false },
-      { name: 'IQ test', included: false },
+      { name: 'Bệnh phổi tắc nghẽn mạn tính (COPD)', included: true },
+      { name: 'Hen phế quản (Suyễn)', included: true },
+      { name: 'Lao phổi', included: true },
     ],
   },
   {
     id: 3,
-    title: 'Enterprise',
+    title: 'Khám và điều trị chuyên khoa',
     description: 'Run your company on your teams',
-    price: '39.99',
-    period: '/Monthly',
-    icon: LuCrown,
+    price: '100',
+    period: '/Mỗi tháng',
+    icon: SiWorldhealthorganization,
     iconColor: 'text-primary',
-    buttonText: 'Purchase Now',
-    highlight: '25% Sale',
+    buttonText: 'Đặt lịch ngay',
+    highlight: 'Tốt nhất',
+    href: '/booking',
     features: [
-      { name: '<b>3</b> Projects', included: true },
-      { name: '<b>299</b> Customers', included: true },
-      { name: 'Scalable Bandwidth', included: true },
-      { name: '<b>3</b> No Team Account', included: true },
-      { name: 'In app messaging', included: true },
-      { name: '5 FTP Login', included: true },
-      { name: 'Detailed Analytics', included: true },
-      { name: 'Custom Domain', included: false },
-      { name: 'Smart Workflow', included: false },
-      { name: 'IQ test', included: false },
+      { name: 'Bệnh phổi tắc nghẽn mạn tính (COPD)', included: true },
+      { name: 'Viêm phế quản cấp tính', included: true },
+      { name: 'Hen phế quản (Suyễn)', included: true },
+      { name: 'Viêm phổi', included: true },
+      { name: 'Lao phổi', included: true },
+      { name: 'Bệnh phổi kẽ (xơ phổi)', included: true },
+      { name: 'Bệnh bụi phổi', included: true },
+      { name: 'Thuyên tắc phổi', included: true },
+      { name: 'Tràn dịch/Tràn khí màng phổi', included: true },
     ],
   },
   {
     id: 4,
-    title: 'Unlimited',
+    title: 'Tư vấn - Khám sức khỏe định kỳ',
     description: 'Your entire team in one place',
-    price: '49.99',
-    period: '/Monthly',
-    icon: LuLuggage,
+    price: '500',
+    period: '/Mỗi tháng',
+    icon: GiHealthNormal,
     iconColor: 'text-danger',
-    buttonText: 'Purchase Now',
+    buttonText: 'Đặt lịch ngay',
+    href: '/booking',
     features: [
-      { name: '<b>3</b> Projects', included: true },
-      { name: '<b>299</b> Customers', included: true },
-      { name: 'Scalable Bandwidth', included: true },
-      { name: '<b>3</b> No Team Account', included: true },
-      { name: 'In app messaging', included: true },
-      { name: '5 FTP Login', included: true },
-      { name: 'Detailed Analytics', included: true },
-      { name: 'Custom Domain', included: true },
-      { name: 'Smart Workflow', included: true },
-      { name: 'IQ test', included: true },
+      { name: 'Ho kéo dài (trên 3 tuần) hoặc ho ra máu.', included: true },
+      { name: 'Khó thở, hụt hơi khi hoạt động nhẹ', included: true },
+      { name: 'Đau ngực dai dẳng', included: true },
+      { name: 'Thở khò khè hoặc thở rít', included: true },
+      { name: 'Thường xuyên bị nhiễm trùng đường hô hấp', included: true },
     ],
   },
 ];
@@ -117,7 +108,7 @@ const Pricing = () => {
         <div className="flex flex-col gap-y-16">
           <div className="text-center lg:w-3xl mx-auto">
             <h1 className="mb-4 leading-relaxed text-4xl font-semibold text-default-800">
-              Tailored Website Design Package
+              Các hoạt động chuyên môn tại bệnh viện
             </h1>
             <p className="text-lg text-default-500">
               A good web design package will include designing a logo, integration with local SEO,
@@ -144,17 +135,19 @@ const Pricing = () => {
 
                   <p className="mb-4 text-default-500">{plan.description}</p>
                   <h1 className="mb-4 text-4xl text-default-800 font-normal">
-                    <span className="text-default-400">$</span>
                     {plan.price}
+                    <span className="text-default-400">ca</span>
                     <small className="text-base text-default-500">{plan.period}</small>
                   </h1>
 
-                  <button
-                    type="button"
-                    className="btn border w-full border-dashed border-primary bg-transparent text-primary hover:bg-primary/20"
-                  >
-                    {plan.buttonText}
-                  </button>
+                  <Link href={plan.href}>
+                    <button
+                      type="button"
+                      className="btn border w-full border-dashed border-primary bg-transparent text-primary hover:bg-primary/20"
+                    >
+                      {plan.buttonText}
+                    </button>
+                  </Link>
 
                   <ul className="mt-5 flex flex-col gap-3 text-sm">
                     {plan.features.map((feature, i) => (

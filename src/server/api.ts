@@ -94,7 +94,7 @@ export const removeDepartment = async (id: number) => {
     .catch(e => console.log(e));
 };
 // Patient COPD
-export const fetchCopdPatients = async () => {
+export const fetchCopdPatients = async (page: number, size: number) => {
   const user = getUserFromLocalStorage();
   const token = user?.accessToken;
   return await axios({
@@ -103,6 +103,10 @@ export const fetchCopdPatients = async () => {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
+    },
+    params: {
+      page: page,
+      size: size,
     },
   })
     .then(res => res)
@@ -849,4 +853,31 @@ export const fetchPatientCountByMonth = async (year: number) => {
   })
     .then(res => res)
     .catch(err => err);
+};
+export const fetchPublicDepartments = async () => {
+  return await axios({
+    url: `${process.env.NEXT_PUBLIC_API_URL}/api/public/departments`,
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    params: {
+      page: 0,
+      size: 20,
+      name: '',
+    },
+  })
+    .then(res => res.data.content)
+    .catch(e => console.log(e));
+};
+export const fetchPublicDepartment = async (id: number) => {
+  return await axios({
+    url: `${process.env.NEXT_PUBLIC_API_URL}/api/public/departments/${id}`,
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(res => res.data)
+    .catch(e => console.log(e));
 };

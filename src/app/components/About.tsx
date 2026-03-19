@@ -16,14 +16,14 @@ const About = () => {
         <div className="flex flex-col lg:gap-y-20 gap-y-12">
           <div className="text-center lg:w-3xl mx-auto">
             <h1 className="mb-6 leading-relaxed text-4xl font-semibold text-default-800">
-              Why Developers Should Embrace{' '}
+              Lý do lựa chọn{' '}
               <span className="relative inline-block px-2 mx-2 before:block before:absolute before:-inset-1 before:-skew-y-6 before:bg-primary/10 before:rounded-md before:backdrop-blur-xl">
-                <span className="relative text-primary">Tailwick</span>
+                <span className="relative text-primary">Bệnh viện Phổi Khánh Hòa</span>
               </span>{' '}
             </h1>
             <p className="text-lg text-default-500">
-              The purpose of developer communities is to provide the resources for developers to
-              learn anything they want to.
+              Mục đích của Bệnh viện là điều trị dứt điểm các bệnh lý về phổi, tư vấn và hướng dẫn
+              bệnh nhân phòng ngừa và đem đến trải nghiệm tốt nhất cho bệnh nhân tại bệnh viện
             </p>
           </div>
 
@@ -103,7 +103,7 @@ const About = () => {
                 className="btn border-primary text-primary hover:bg-primary hover:text-white"
               >
                 Discover Now
-                <LuMoveRight  className="size-4"/>
+                <LuMoveRight className="size-4" />
               </button>
             </div>
 

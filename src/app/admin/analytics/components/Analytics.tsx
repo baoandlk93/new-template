@@ -1,6 +1,22 @@
+'use client';
 import { LuCog, LuCoins, LuKanban, LuListFilter, LuUsers } from 'react-icons/lu';
-
+import { fetchCopdPatients } from '@/server/api';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 const Analytics = () => {
+  const [totalCopdPatients, setTotalCopdPatients] = useState(0);
+  const fetchData = async (page: number, size: number) => {
+    await fetchCopdPatients(page, size).then(res => {
+      if (res?.status === 200) {
+        setTotalCopdPatients(res.data.totalElements);
+      } else {
+        toast.error('Có lỗi khi lấy dữ liệu vui lòng thử lại !');
+      }
+    });
+  };
+  useEffect(() => {
+    fetchData(0, 10);
+  }, []);
   return (
     <div className="col-span-1">
       <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
@@ -11,9 +27,9 @@ const Analytics = () => {
               <LuUsers className="size-6 text-green-50" />
             </div>
             <h5 className="mt-5 mb-2 text-lg font-semibold">
-              <span data-target="15876">15,876</span>
+              <span data-target="15876">{totalCopdPatients}</span>
             </h5>
-            <p className="text-sm text-default-700">Total Users</p>
+            <p className="text-sm text-default-700">Tổng số bệnh nhân Hen-COPD</p>
           </div>
         </div>
 

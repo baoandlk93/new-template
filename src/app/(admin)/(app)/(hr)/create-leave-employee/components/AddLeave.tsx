@@ -8,7 +8,7 @@ const AddLeave = () => {
       <div className="lg:col-span-3 col-span-1">
         <div className="card">
           <div className="card-header">
-            <h6 className="card-title">Apply Leave</h6>
+            <h6 className="card-title">Nộp đơn nghỉ phép</h6>
           </div>
 
           <div className="card-body">
@@ -18,14 +18,14 @@ const AddLeave = () => {
                   htmlFor="employeeName"
                   className="inline-block mb-2 text-sm text-default-800 font-medium"
                 >
-                  Leave Type
+                  Loại nghỉ phép
                 </label>
                 <select className="form-input">
-                  <option value="">Select Leave Type</option>
-                  <option value="Medical Leave">Medical Leave</option>
-                  <option value="Casual Leave">Casual Leave</option>
-                  <option value="Sick Leave">Sick Leave</option>
-                  <option value="Annual Leave">Annual Leave</option>
+                  <option value="">Chọn loại nghỉ phép</option>
+                  <option value="Medical Leave">Nghỉ phép y tế</option>
+                  <option value="Casual Leave">Nghỉ phép thông thường</option>
+                  <option value="Sick Leave">Nghỉ ốm</option>
+                  <option value="Annual Leave">Nghỉ phép hàng năm</option>
                 </select>
               </div>
 
@@ -34,7 +34,7 @@ const AddLeave = () => {
                   htmlFor="remainingLeaves"
                   className="inline-block mb-2 text-sm text-default-800 font-medium"
                 >
-                  Remaining Leaves
+                  Nghỉ phép còn lại
                 </label>
                 <input
                   type="text"
@@ -50,7 +50,7 @@ const AddLeave = () => {
                   htmlFor="fromInput"
                   className="inline-block mb-2 text-sm text-default-800 font-medium"
                 >
-                  Form
+                  Từ ngày
                 </label>
 
                 <Flatpickr
@@ -68,7 +68,7 @@ const AddLeave = () => {
                   htmlFor="toInput"
                   className="inline-block mb-2 text-sm text-default-800 font-medium"
                 >
-                  To
+                  Đến ngày
                 </label>
 
                 <Flatpickr
@@ -86,7 +86,7 @@ const AddLeave = () => {
                   htmlFor="numberOfDayLeaves"
                   className="inline-block mb-2 text-sm text-default-800 font-medium"
                 >
-                  Number of Days
+                  Số ngày
                 </label>
                 <input
                   type="text"
@@ -102,12 +102,12 @@ const AddLeave = () => {
                   htmlFor=""
                   className="inline-block mb-2 text-sm text-default-800 font-medium"
                 >
-                  Leave Day
+                  Ngày nghỉ phép
                 </label>
                 <select className="form-input">
-                  <option value="">Select Leave Day</option>
-                  <option value="Full Day">Full Day</option>
-                  <option value="Half Day">Half Day</option>
+                  <option value="">Chọn ngày nghỉ phép</option>
+                  <option value="Full Day">Cả ngày</option>
+                  <option value="Half Day">Nửa ngày</option>
                 </select>
               </div>
             </div>
@@ -126,9 +126,9 @@ const AddLeave = () => {
 
             <div className="flex justify-end gap-2 mt-5">
               <button className="btn border-0 text-danger bg-transparent hover:bg-danger/10">
-                Reset
+                Nhập lại
               </button>
-              <button className="text-white btn bg-primary">Apply Leave</button>
+              <button className="text-white btn bg-primary">Nộp đơn nghỉ phép</button>
             </div>
           </div>
         </div>
@@ -137,24 +137,24 @@ const AddLeave = () => {
       <div className="col-span-1">
         <div className="card">
           <div className="card-header">
-            <h6 className="card-title">Leave Information (2023)</h6>
+            <h6 className="card-title">Thông tin nghỉ phép (2023)</h6>
           </div>
 
           <div className="card-body">
             <table className="w-full mb-0 text-sm">
               <tbody>
                 <tr>
-                  <td className="py-2.5 text-default-800">Medical Leave</td>
+                  <td className="py-2.5 text-default-800">Nghỉ phép y tế</td>
                   <th className="py-2.5 text-default-800 font-semibold">04</th>
                 </tr>
 
                 <tr>
-                  <td className="py-2.5 text-default-800">Casual Leave</td>
+                  <td className="py-2.5 text-default-800">Nghỉ phép thông thường</td>
                   <th className="py-2.5 text-default-800 font-semibold">08</th>
                 </tr>
 
                 <tr>
-                  <td className="py-2.5 text-default-800">Sick Leave</td>
+                  <td className="py-2.5 text-default-800">Nghỉ ốm</td>
                   <th className="py-2.5 text-default-800 font-semibold">03</th>
                 </tr>
 
@@ -164,12 +164,12 @@ const AddLeave = () => {
                 </tr>
 
                 <tr>
-                  <td className="py-2.5 text-default-800">Use Leave</td>
+                  <td className="py-2.5 text-default-800">Sử dụng Nghỉ phép</td>
                   <th className="py-2.5 text-default-800 font-semibold">09</th>
                 </tr>
 
                 <tr>
-                  <td className="py-2.5 text-default-800">Remaining Leave</td>
+                  <td className="py-2.5 text-default-800">Nghỉ phép còn lại</td>
                   <th className="py-2.5 text-default-800 font-semibold">18</th>
                 </tr>
               </tbody>

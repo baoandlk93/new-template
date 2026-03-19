@@ -7,7 +7,7 @@ import MobileMenu from './MobileMenu';
 import avatar1 from '@/assets/images/user/avatar-1.png';
 import { ReactNode, useEffect, useState } from 'react';
 import { LuGem, LuLogOut, LuMail, LuMessagesSquare, LuLogIn } from 'react-icons/lu';
-import { IRole, IUser } from '@/server/entity';
+import { ERole, IRole, IUser } from '@/server/entity';
 import { getUserFromLocalStorage, setUserToLocalStorage } from '@/utils/security';
 import { useRouter } from 'next/navigation';
 import { checkToken } from '@/server/api';
@@ -29,7 +29,6 @@ const profileMenu: ProfileMenuItem[] = [
     badge: '15',
   },
   { icon: <LuMessagesSquare className="size-4" />, label: 'Chat', href: '/chat' },
-  { icon: <LuGem className="size-4" />, label: 'Upgrade Pro', href: '/pricing' },
   { divider: true },
   {
     icon: <LuLogOut className="size-4" />,
@@ -55,6 +54,7 @@ const Navbar = () => {
       return false;
     }
   };
+  const roles = user?.roles.map((role: IRole) => role.name);
   useEffect(() => {
     const init = async () => {
       const currentUser = getUserFromLocalStorage();
@@ -87,7 +87,7 @@ const Navbar = () => {
         <div className="container">
           <div className="grid lg:grid-cols-12 md:grid-cols-10 grid-cols-2 items-center">
             <div className="lg:col-span-2 md:col-span-2">
-              <Link href="/index">
+              <Link href="/">
                 <Image
                   src={darkLogo}
                   alt="logo dark"
@@ -149,6 +149,14 @@ const Navbar = () => {
                     Thông tin đấu thầu
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href="/booking"
+                    className="text-default-800  hover:text-primary transition duration-300"
+                  >
+                    Đặt lịch khám
+                  </Link>
+                </li>
               </ul>
             </div>
 
@@ -166,8 +174,11 @@ const Navbar = () => {
                   </button>
                   <div className="hs-dropdown-menu min-w-48">
                     <div className="p-2">
-                      <h6 className="mb-2 text-default-500">Welcome to Tailwick</h6>
-                      <Link href="#!" className="flex gap-3">
+                      <h6 className="mb-2 text-default-500">Chào mừng</h6>
+                      <Link
+                        href={roles?.includes('ADMIN') ? '/admin' : '#!'}
+                        className="flex gap-3"
+                      >
                         <div className="relative inline-block">
                           <Image
                             src={user.avatar ? user.avatar : avatar1}

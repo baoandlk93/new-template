@@ -1,13 +1,7 @@
 import React from 'react';
 import Analytics from './components/Analytics';
-import PerspectiveChart from './components/PerspectiveChart';
-import LocationBased from './components/LocationBased';
 import PagesInteraction from './components/PagesInteraction';
-import UserChart from './components/UserChart';
-import ProductsStatistics from './components/ProductsStatistics';
-import AnalyticsReports from './components/AnalyticsReports';
 import StatusOfMonthlyCampaign from './components/StatusOfMonthlyCampaign';
-import SubscriptionDistribution from './components/SubscriptionDistribution';
 import TrafficSource from './components/TrafficSource';
 import PageBreadcrumb from '@/components/PageBreadcrumb';
 import { Metadata } from 'next';
@@ -17,7 +11,7 @@ export const metadata: Metadata = { title: 'Analytics' };
 const Page = () => {
   return (
     <main>
-      <PageBreadcrumb title="Analytics" subtitle="Dashboard" />
+      <PageBreadcrumb title="Thống kê" subtitle="Bảng điều khiển" />
       <div className="grid lg:grid-cols-3 grid-cols-1 gap-5 mb-5">
         <Analytics />
         <TrafficSource />

@@ -13,27 +13,27 @@ const Feature = () => {
           <div className="lg:col-span-5 relative z-20 lg:order-1 order-2">
             <div className="relative z-10 grid lg:grid-cols-2 grid-cols-3 gap-5">
               <div className="lg:col-span-2">
-                <Image src={widgets} alt="" className="rounded-xl ms-auto" />
+                {/* <Image src={widgets} alt="" className="rounded-xl ms-auto" /> */}
               </div>
 
               <div className="lg:col-span-1 lg:mt-5">
-                <Image src={widgets3} alt="" className="rounded-xl" />
+                {/* <Image src={widgets3} alt="" className="rounded-xl" /> */}
               </div>
 
               <div className="lg:col-span-1 lg:mt-5">
-                <Image src={widgets2} alt="" className="rounded-xl" />
+                {/* <Image src={widgets2} alt="" className="rounded-xl" /> */}
               </div>
             </div>
           </div>
 
           <div className="lg:col-span-7 relative z-20 lg:-mt-72 lg:order-2 order-1">
-            <Image src={home} alt="" className="rounded-xl shadow-2xl" />
+            {/* <Image src={home} alt="" className="rounded-xl shadow-2xl" /> */}
           </div>
         </div>
 
         <div className="mt-24">
           <h1 className="mb-16 capitalize text-white font-semibold text-4xl leading-normal">
-            Build for anyone who works with Tailwick
+            Các Khoa lâm sàng của bệnh viện
           </h1>
         </div>
       </div>

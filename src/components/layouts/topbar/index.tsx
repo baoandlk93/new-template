@@ -12,7 +12,7 @@ import avatar5 from '@/assets/images/user/avatar-5.png';
 import avatar7 from '@/assets/images/user/avatar-7.png';
 import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import { ReactNode, useState, useEffect } from 'react';
 import { TbSearch } from 'react-icons/tb';
 import SimpleBar from 'simplebar-react';
 import SidenavToggle from './SidenavToggle';
@@ -29,6 +29,7 @@ import {
   LuSettings,
   LuShoppingBag,
 } from 'react-icons/lu';
+import { ImProfile } from 'react-icons/im';
 
 type Language = {
   src: StaticImageData;
@@ -183,23 +184,71 @@ const notifications: Record<string, Notification[]> = {
 };
 
 const profileMenu: ProfileMenuItem[] = [
+  { icon: <ImProfile className="size-4" />, label: 'Thông tin tài khoản', href: '/profile' },
   {
     icon: <LuMail className="size-4" />,
-    label: 'Inbox',
+    label: 'Hộp thư',
     href: '/mailbox',
     badge: '15',
   },
-  { icon: <LuMessagesSquare className="size-4" />, label: 'Chat', href: '/chat' },
-  { icon: <LuGem className="size-4" />, label: 'Upgrade Pro', href: '/pricing' },
+  { icon: <LuMessagesSquare className="size-4" />, label: 'Nhắn tin', href: '/chat' },
   { divider: true },
   {
     icon: <LuLogOut className="size-4" />,
-    label: 'Sign Out',
+    label: 'Đăng xuất',
     href: '/basic-logout',
   },
 ];
-
+import { IRole, IUser } from '@/server/entity';
+import { getUserFromLocalStorage, setUserToLocalStorage } from '@/utils/security';
+import { useRouter } from 'next/navigation';
+import { checkToken } from '@/server/api';
+import { toast } from 'react-toastify';
 const Topbar = () => {
+  const [user, setUser] = useState<IUser | null>(null);
+  const router = useRouter();
+  const checkValidToken = async (): Promise<boolean> => {
+    try {
+      const res = await checkToken();
+      if (res.status === 200) {
+        return true;
+      } else if (res.status === 401) {
+        toast.error('Phiên làm việc đã hết hạn vui lòng đăng nhập lại');
+        return false;
+      }
+      return false;
+    } catch (e) {
+      console.log(e, 'error');
+      return false;
+    }
+  };
+  const roles = user?.roles.map((role: IRole) => role.name);
+  useEffect(() => {
+    const init = async () => {
+      const currentUser = getUserFromLocalStorage();
+      if (currentUser) {
+        const isValid = await checkValidToken();
+        if (!isValid) {
+          setUserToLocalStorage(null as unknown as IUser);
+          setUser(null);
+          return;
+        }
+        setUser(currentUser);
+        if (
+          currentUser.roles.map((role: IRole) => role.name).includes('ADMIN') ||
+          currentUser.roles.map((role: IRole) => role.name).includes('MANAGER')
+        ) {
+          // router.push("/admin");
+        } else {
+          console.log('user', currentUser);
+          router.push('/');
+        }
+      } else {
+        setUser(null);
+      }
+    };
+    init();
+  }, []);
   return (
     <div className="app-header min-h-topbar-height flex items-center sticky top-0 z-30 bg-(--topbar-background) border-b border-default-200">
       <div className="w-full flex items-center justify-between px-6">
@@ -256,7 +305,7 @@ const Topbar = () => {
             </button>
             <div className="hs-dropdown-menu max-w-100 p-0">
               <div className="p-4 border-b border-default-200 flex items-center gap-2">
-                <h3 className="text-base text-default-800">Notifications</h3>
+                <h3 className="text-base text-default-800">Thông báo</h3>
                 <span className="size-5 font-semibold bg-orange-500 rounded text-white flex items-center justify-center text-xs">
                   15
                 </span>
@@ -330,10 +379,10 @@ const Topbar = () => {
 
               <div className="flex items-center justify-between p-4 border-t border-default-200">
                 <Link href="#!" className="text-sm font-medium text-default-900">
-                  Manage Notification
+                  Quản lý thông báo
                 </Link>
                 <button type="button" className="btn btn-sm text-white bg-primary">
-                  View All <LuMoveRight className="size-4" />
+                  Hiển thị tất cả <LuMoveRight className="size-4" />
                 </button>
               </div>
             </div>
@@ -355,22 +404,28 @@ const Topbar = () => {
           <div className="topbar-item hs-dropdown relative inline-flex">
             <button className="cursor-pointer bg-pink-100 rounded-full">
               <Image
-                src={avatar1}
+                src={user?.avatar ? user.avatar : avatar1}
                 alt="user"
                 className="hs-dropdown-toggle rounded-full size-9.5"
               />
             </button>
             <div className="hs-dropdown-menu min-w-48">
               <div className="p-2">
-                <h6 className="mb-2 text-default-500">Welcome to Tailwick</h6>
+                <h6 className="mb-2 text-default-500">Chào mừng</h6>
                 <Link href="#!" className="flex gap-3">
                   <div className="relative inline-block">
-                    <Image src={avatar1} alt="user" className="size-12 rounded" />
+                    <Image
+                      src={user?.avatar ? user.avatar : avatar1}
+                      alt="user"
+                      className="size-12 rounded"
+                    />
                     <span className="-top-1 -end-1 absolute w-2.5 h-2.5 bg-green-400 border-2 border-white rounded-full"></span>
                   </div>
                   <div>
-                    <h6 className="mb-1 text-sm font-semibold text-default-800">Paula Keenan</h6>
-                    <p className="text-default-500">CEO & Founder</p>
+                    <h6 className="mb-1 text-sm font-semibold text-default-800">
+                      {user?.fullName ? user.fullName : user?.username}
+                    </h6>
+                    <p className="text-default-500">{user?.username}</p>
                   </div>
                 </Link>
               </div>

@@ -42,46 +42,46 @@ const MobileMenu = () => {
           <ul className="flex flex-col gap-y-4 lg:gap-8 md:gap-6 font-semibold  text-sm">
             <li>
               <Link
-                href="#home"
+                href="/"
                 className="text-secondary-default-400 hover:text-primary transition duration-300"
               >
-                Home
+                Trang chủ
               </Link>
             </li>
 
             <li>
               <Link
-                href="#features"
+                href="/about"
                 className="text-secondary-default-400 hover:text-primary transition duration-300"
               >
-                Our Features
+                Giới thiệu
               </Link>
             </li>
 
             <li>
               <Link
-                href="#about"
+                href="/business-calendar"
                 className="text-secondary-default-400 hover:text-primary transition duration-300"
               >
-                About Us
+                Lịch công tác
               </Link>
             </li>
 
             <li>
               <Link
-                href="#pricing"
+                href="/administrative-reform"
                 className="text-secondary-default-400 hover:text-primary transition duration-300"
               >
-                Pricing
+                Cải cách hành chính
               </Link>
             </li>
 
             <li>
               <Link
-                href="#contact"
+                href="/bidding-information"
                 className="text-secondary-default-400 hover:text-primary transition duration-300"
               >
-                Contact
+                Thông tin đấu thầu
               </Link>
             </li>
           </ul>

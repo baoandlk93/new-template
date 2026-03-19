@@ -27,41 +27,43 @@ const workCards: WorkCard[] = [
   {
     id: 1,
     image: chat,
-    tag: 'Popular Apps',
+    tag: 'Khám - HSCC',
     tagColor: 'border-primary/30 bg-primary/15 text-primary',
-    title: 'Chat with Client & Employee',
-    description:
-      'A chat UI, or user interface, is one of the first things users see when using a web or mobile application to communicate.',
-    link: '#',
+    title: 'Khoa Khám - Hồi sức cấp cứu',
+    description: `Khoa Khám - Hồi sức cấp cứu của Bệnh viện Phổi Khánh Hòa là một đơn vị chuyên trách, 
+    cung cấp dịch vụ chăm sóc y tế nhanh chóng và hiệu quả cho các bệnh nhân gặp tình trạng khẩn cấp liên quan 
+    đến bệnh lý hô hấp và các vấn đề sức khỏe nghiêm trọng khác.Khoa được trang bị các thiết bị y tế hiện đại, 
+    hỗ trợ chẩn đoán và điều trị kịp thời ... `,
+    link: '/about/kham-hscc',
   },
   {
     id: 2,
     image: email,
-    tag: 'Email Apps',
+    tag: 'Lao hô hấp',
     tagColor: 'border-secondary/30 bg-secondary/15 text-secondary',
-    title: 'Exciting New Features Await You',
+    title: 'Khoa Lao Hô hấp',
     description:
-      'A chat UI, or user interface, is one of the first things users see when using a web or mobile application to communicate.',
-    link: '#',
+      'Khoa Lao Hô hấp của Bệnh viện Phổi Khánh Hòa là một đơn vị chuyên trách trong việc chẩn đoán, điều trị và quản lý các bệnh nhân mắc lao phổi và các bệnh lý liên quan. Khoa được trang bị cơ sở vật chất và thiết bị y tế hiện đại, phù hợp cho việc theo dõi và điều trị bệnh nhân nội trú...',
+    link: '/about/lao-ho-hap',
   },
   {
     id: 3,
     image: order,
-    tag: 'HR Management',
+    tag: 'LNP&BP',
     tagColor: 'border-danger/20 bg-danger/15 text-danger',
-    title: 'Unleash Your Creativity with Our Latest Tools',
+    title: 'Khoa Lao Ngoài phổi và Bệnh phổi',
     description:
-      'A chat UI, or user interface, is one of the first things users see when using a web or mobile application to communicate.',
-    link: '#',
+      'Khoa Lao Ngoài Phổi và Bệnh Phổi của Bệnh viện Phổi Khánh Hòa là một đơn vị chuyên khoa chuyên điều trị các bệnh lý lao không chỉ giới hạn ở phổi mà còn ở các cơ quan khác trong cơ thể, cũng như quản lý các bệnh lý phổi khác...',
+    link: '/about/lao-ngoai-phoi',
   },
 ];
 
 const stats: StatItem[] = [
-  { id: 1, value: 4, suffix: '+', label: 'Multiple Layouts' },
-  { id: 2, value: 12, suffix: '+', label: 'Multi Languages' },
-  { id: 3, value: 7, suffix: '+', label: 'Apps & Dashboard' },
-  { id: 4, value: 4, suffix: '+', label: 'Multiple Modes' },
-  { id: 5, value: 36500, suffix: '+', label: 'Happy Customers' },
+  { id: 1, value: 4, suffix: '+', label: 'Thạc sĩ' },
+  { id: 2, value: 8, suffix: '+', label: 'Bác sĩ CKI' },
+  { id: 3, value: 8, suffix: '', label: 'Khoa/Phòng' },
+  { id: 4, value: 500, suffix: '+', label: 'Danh mục kỹ thuật' },
+  { id: 5, value: 36500, suffix: '+', label: 'Bệnh nhân đã chữa khỏi' },
 ];
 
 const Works = () => {
@@ -102,7 +104,7 @@ const Works = () => {
                       href={card.link}
                       className="text-primary text-base flex items-center gap-1.5"
                     >
-                      Read More
+                      Đọc tiếp
                       <LuMoveRight className="size-4" />
                     </Link>
                   </div>
