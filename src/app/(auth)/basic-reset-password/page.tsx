@@ -1,6 +1,6 @@
 import React from 'react';
-import logoDark from '@/assets/images/logo-dark.png';
-import logoLight from '@/assets/images/logo-light.png';
+import logoDark from '@/assets/images/logo-benh-vien-rmv-bg.png';
+import logoLight from '@/assets/images/logo-benh-vien-rmv-bg.png';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Metadata } from 'next';
@@ -12,16 +12,16 @@ const Page = () => {
       <div className="card md:w-lg w-screen z-10">
         <div className="text-center px-10 py-12">
           <Link href="/index" className="flex justify-center">
-            <Image src={logoDark} alt="logo dark" className="h-6 flex dark:hidden" width={111} />
-            <Image src={logoLight} alt="logo light" className="h-6 hidden dark:flex" width={111} />
+            <Image src={logoDark} alt="logo dark" className="h-20 flex dark:hidden" width={111} />
+            <Image src={logoLight} alt="logo light" className="h-20 hidden dark:flex" width={111} />
           </Link>
           <div className="mt-8">
-            <h4 className="mb-2 text-primary text-xl font-semibold">Forgot Password?</h4>
-            <p className="text-base mb-8 text-default-500">Reset your Tailwick password</p>
+            <h4 className="mb-2 text-primary text-xl font-semibold">Quên mật khẩu?</h4>
+            <p className="text-base mb-8 text-default-500">Đặt lại mật khẩu Tailwick của bạn</p>
           </div>
 
           <div className="p-3 mb-6 text-sm rounded-md font-normal text-warning bg-warning/15">
-            Provide your email address, and instructions will be sent to you
+            Cung cấp địa chỉ email của bạn, và hướng dẫn sẽ được gửi cho bạn
           </div>
 
           <form action="/index">
@@ -37,16 +37,16 @@ const Page = () => {
 
             <div className="mt-8">
               <button type="submit" className="btn bg-primary text-white w-full">
-                Send Reset Link
+                Gửi liên kết đặt lại
               </button>
             </div>
 
             <div className="mt-4 text-center">
               <p className="text-base text-default-800">
-                Wait, I remember my password...{' '}
+                Đã nhớ mật khẩu?{' '}
                 <Link href="/basic-login" className="text-primary underline">
                   {' '}
-                  Click here{' '}
+                  Đăng nhập ngay{' '}
                 </Link>
               </p>
             </div>

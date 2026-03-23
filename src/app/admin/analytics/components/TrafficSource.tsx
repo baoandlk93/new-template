@@ -19,7 +19,7 @@ const TrafficSource: React.FC = () => {
     <div className="card">
       <div className="card-header flex justify-between items-center">
         <h6 className="card-title">Thống kê bệnh nhân COPD - Hen phế quản</h6>
-        <Link href="/admin/copd/analytics" className="text-primary underline">
+        <Link href="/admin/analytics/copd" className="text-primary underline">
           Xem chi tiết
         </Link>
       </div>

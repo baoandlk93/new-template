@@ -6,6 +6,7 @@ import JapaneseFlag from '@/assets/images/flags/japanese.svg';
 import RussiaFlag from '@/assets/images/flags/russia.jpg';
 import SpainFlag from '@/assets/images/flags/spain.jpg';
 import UsFlag from '@/assets/images/flags/us.jpg';
+import VietNamFlag from '@/assets/images/flags/Flag_of_Vietnam.svg.png';
 import avatar1 from '@/assets/images/user/avatar-1.png';
 import avatar3 from '@/assets/images/user/avatar-3.png';
 import avatar5 from '@/assets/images/user/avatar-5.png';
@@ -196,59 +197,11 @@ const profileMenu: ProfileMenuItem[] = [
   {
     icon: <LuLogOut className="size-4" />,
     label: 'Đăng xuất',
-    href: '/basic-logout',
+    href: '/logout',
   },
 ];
-import { IRole, IUser } from '@/server/entity';
-import { getUserFromLocalStorage, setUserToLocalStorage } from '@/utils/security';
-import { useRouter } from 'next/navigation';
-import { checkToken } from '@/server/api';
-import { toast } from 'react-toastify';
-const Topbar = () => {
-  const [user, setUser] = useState<IUser | null>(null);
-  const router = useRouter();
-  const checkValidToken = async (): Promise<boolean> => {
-    try {
-      const res = await checkToken();
-      if (res.status === 200) {
-        return true;
-      } else if (res.status === 401) {
-        toast.error('Phiên làm việc đã hết hạn vui lòng đăng nhập lại');
-        return false;
-      }
-      return false;
-    } catch (e) {
-      console.log(e, 'error');
-      return false;
-    }
-  };
-  const roles = user?.roles.map((role: IRole) => role.name);
-  useEffect(() => {
-    const init = async () => {
-      const currentUser = getUserFromLocalStorage();
-      if (currentUser) {
-        const isValid = await checkValidToken();
-        if (!isValid) {
-          setUserToLocalStorage(null as unknown as IUser);
-          setUser(null);
-          return;
-        }
-        setUser(currentUser);
-        if (
-          currentUser.roles.map((role: IRole) => role.name).includes('ADMIN') ||
-          currentUser.roles.map((role: IRole) => role.name).includes('MANAGER')
-        ) {
-          // router.push("/admin");
-        } else {
-          console.log('user', currentUser);
-          router.push('/');
-        }
-      } else {
-        setUser(null);
-      }
-    };
-    init();
-  }, []);
+import { IUser } from '@/server/entity';
+const Topbar = ({ user }: { user: IUser | null }) => {
   return (
     <div className="app-header min-h-topbar-height flex items-center sticky top-0 z-30 bg-(--topbar-background) border-b border-default-200">
       <div className="w-full flex items-center justify-between px-6">
@@ -277,7 +230,7 @@ const Topbar = () => {
               className="hs-dropdown-toggle btn btn-icon size-8 hover:bg-default-150 rounded-full relative"
               type="button"
             >
-              <Image src={UsFlag} alt="us-flag" className="size-4.5 rounded" />
+              <Image src={VietNamFlag} alt="vietnam-flag" className="size-4.5 rounded" />
             </button>
             <div className="hs-dropdown-menu" role="menu">
               {languages.map((lang, i) => (

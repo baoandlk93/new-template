@@ -1,16 +1,11 @@
+'use client';
 import Link from 'next/link';
 import { LuChevronLeft, LuChevronRight, LuPencil, LuPlus, LuTrash2 } from 'react-icons/lu';
+import { useEffect, useState } from 'react';
+import { IDepartment } from '@/server/entity';
+import { fetchDepartments } from '@/server/api';
 
-type Department = {
-  id: number;
-  name: string;
-  head: string;
-  phone: string;
-  email: string;
-  employees: number;
-};
-
-const departmentsData: Department[] = [
+const departmentsData: IDepartment[] = [
   {
     id: 1,
     name: 'Web Development',
@@ -54,12 +49,34 @@ const departmentsData: Department[] = [
 ];
 
 const Departments = () => {
+  const [loading, setLoading] = useState(false);
+  const [departments, setDepartments] = useState<IDepartment[]>([]);
+  const [selectedDepartment, setSelectedDepartment] = useState<IDepartment | null>(null);
+  const fetchData = () => {
+    setLoading(true);
+    fetchDepartments().then(res => setDepartments(res));
+    setLoading(false);
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const handleEdit = (dept: IDepartment) => {
+    console.log('Edit department:', dept);
+    setSelectedDepartment(dept);
+  };
+  const handleDelete = (dept: IDepartment) => {
+    console.log('Delete department:', dept);
+    setSelectedDepartment(dept);
+  };
   return (
     <div className="card">
       <div className="card-header flex justify-between items-center">
-        <h6 className="card-title">Departments</h6>
-        <button className="btn btn-sm bg-primary text-white flex items-center gap-1">
-          <LuPlus className="size-4" /> Add Department
+        <h6 className="card-title">Khoa/Phòng</h6>
+        <button
+          className="btn btn-sm bg-primary text-white flex items-center gap-1"
+          data-hs-overlay="#department-edit-modal"
+        >
+          <LuPlus className="size-4" /> Thêm Khoa/Phòng
         </button>
       </div>
 
@@ -71,17 +88,17 @@ const Departments = () => {
                 <thead className="font-semibold whitespace-nowrap">
                   <tr className="text-sm text-default-800 divide-x divide-default-200">
                     <th className="px-3.5 py-3 text-start">#</th>
-                    <th className="px-3.5 py-3 text-start">Department Name</th>
-                    <th className="px-3.5 py-3 text-start">Head of Dep.</th>
-                    <th className="px-3.5 py-3 text-start">Phone Number</th>
+                    <th className="px-3.5 py-3 text-start">Tên Khoa/Phòng</th>
+                    <th className="px-3.5 py-3 text-start">Trưởng Khoa/Phòng</th>
+                    <th className="px-3.5 py-3 text-start">Số Điện Thoại</th>
                     <th className="px-3.5 py-3 text-start">Email</th>
-                    <th className="px-3.5 py-3 text-start">Employee</th>
-                    <th className="px-3.5 py-3 text-start">Action</th>
+                    <th className="px-3.5 py-3 text-start">Số Nhân Viên</th>
+                    <th className="px-3.5 py-3 text-start">Thao Tác</th>
                   </tr>
                 </thead>
 
                 <tbody className="divide-y divide-default-200">
-                  {departmentsData.map(dept => (
+                  {departments.map(dept => (
                     <tr
                       key={dept.id}
                       className="text-default-800 font-normal whitespace-nowrap divide-x divide-default-200"
@@ -92,11 +109,12 @@ const Departments = () => {
                       <td className="px-3.5 py-3 text-sm">{dept.phone}</td>
                       <td className="px-3.5 py-3 text-sm">{dept.email}</td>
                       <td className="px-3.5 py-3 text-sm">
-                        {dept.employees.toString().padStart(2, '0')}
+                        {(dept.employees ?? 0).toString().padStart(2, '0')}
                       </td>
                       <td className="px-3.5 py-3">
                         <div className="flex items-center gap-2">
                           <Link
+                            onClick={() => handleEdit(dept)}
                             href="#"
                             className="btn size-8 bg-default-200 hover:bg-primary/10 hover:text-primary text-default-600"
                             aria-haspopup="dialog"
@@ -108,6 +126,7 @@ const Departments = () => {
                           </Link>
 
                           <Link
+                            onClick={() => handleDelete(dept)}
                             href="#"
                             className="btn size-8 bg-default-200 hover:bg-primary/10 hover:text-primary text-default-600"
                             aria-haspopup="dialog"
@@ -129,7 +148,7 @@ const Departments = () => {
 
         <div className="card-footer flex justify-between items-center">
           <p className="text-default-500 text-sm">
-            Showing <b>{departmentsData.length}</b> of <b>8</b> Results
+            Showing <b>{departments.length}</b> of <b>8</b> Results
           </p>
           <nav className="flex items-center gap-2" aria-label="Pagination">
             <button

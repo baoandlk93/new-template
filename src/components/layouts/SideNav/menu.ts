@@ -26,7 +26,6 @@ export type MenuItemType = {
   isTitle?: boolean;
   href?: string;
   children?: MenuItemType[];
-
   icon?: IconType;
   parentKey?: string;
   target?: string;
@@ -44,19 +43,24 @@ export const menuItemsData: MenuItemType[] = [
     label: 'Bảng điều khiển',
     icon: LuMonitorDot,
     children: [
-      { key: 'Analytics', label: 'Thống kê', href: '/admin/analytics' },
-      { key: 'Ecommerce', label: 'Ecommerce', href: '/index' },
-      { key: 'Email', label: 'Email', href: '/email' },
-      { key: 'HR', label: 'HR', href: '/hr' },
+      { key: 'Analytics', label: 'Thống kê', href: '/admin/analytics',
+        children: [
+          { key: 'COPD', label: 'COPD', href: '/admin/analytics/copd' },
+          { key: 'equipment', label: 'Tài sản', href: '/admin/analytics/equipment' },
+        ],
+       },
+      // { key: 'Ecommerce', label: 'Ecommerce', href: '/index' },
+      // { key: 'Email', label: 'Email', href: '/email' },
+      // { key: 'HR', label: 'HR', href: '/hr' },
     ],
   },
   {
-    key: 'Landing Page',
-    label: 'Landing Page',
+    key: 'Trang thông tin',
+    label: 'Trang thông tin',
     icon: LuPictureInPicture2,
     children: [
-      { key: 'One Page', label: 'One Page', href: '/onepage-landing', target: '_blank' },
-      { key: 'Product', label: 'Product', href: '/product-landing', target: '_blank' },
+      { key: 'One Page', label: 'Trang cổng thông tin', href: '/', target: '_blank' },
+      // { key: 'Product', label: 'Product', href: '/product-landing', target: '_blank' },
     ],
   },
   {
@@ -64,50 +68,57 @@ export const menuItemsData: MenuItemType[] = [
     label: 'Apps',
     isTitle: true,
   },
-  {
-    key: 'Chat',
-    label: 'Chat',
-    icon: LuMessagesSquare,
-    href: '/chat',
-  },
-  {
-    key: 'Calendar',
-    label: 'Calendar',
-    icon: LuCalendar1,
-    href: '/calendar',
-  },
-  {
-    key: 'Email',
-    label: 'Email',
-    icon: LuMail,
-    href: '/mailbox',
-  },
-  {
-    key: 'Notes',
-    label: 'Notes',
-    icon: LuClipboardList,
-    href: '/notes',
-  },
-  {
-    key: 'Quản lý ',
-    label: 'Quản lý',
+   {
+    key: 'Quản lý tài sản',
+    label: 'Quản lý tài sản',
     icon: LuLayoutDashboard,
     children: [
-      { key: 'equipment', label: 'Trang thiết bị', href: '/admin/equipment' },
+      { key: 'equipment', label: 'Tài sản', href: '/admin/equipment' },
       { key: 'maintenance', label: 'Quản lý sửa chữa', href: '/admin/maintenance' },
-      { key: 'department', label: 'Quản lý khoa phòng', href: '/admin/departments' },
       {
         key: 'category-equipment',
         label: 'Quản lý nhóm tài sản',
         href: '/admin/category-equipment',
       },
-      { key: 'employee', label: 'Quản lý nhân viên', href: '/admin/employees' },
+    ],
+  },
+   {
+    key: 'Quản lý bệnh nhân',
+    label: 'Quản lý bệnh nhân',
+    icon: LuLayoutDashboard,
+    children: [
       { key: 'copd', label: 'Quản lý bệnh nhân COPD', href: '/admin/copd' },
     ],
   },
   {
+    key: 'Quản lý người dùng',
+    label: 'Quản lý người dùng',
+    icon: LuCircuitBoard,
+    children: [
+      { key: 'Employee List', label: 'Danh sách tài khoản', href: '/users-list' },
+      {
+        key: 'roles',
+        label: 'Quản lý vai trò',
+        href: '#',
+        children: [
+          { key: 'Employee Salary', label: 'Danh sách vai trò', href: '/payroll-employee-salary' },
+          { key: 'Payslip', label: 'Phân vai trò', href: '/payroll-payslip' },
+        ],
+      },
+      {
+        key: 'Permission',
+        label: 'Phân quyền',
+        href: '#',
+        children: [
+          { key: 'Employee Salary', label: 'Danh sách quyền', href: '/payroll-employee-salary' },
+          { key: 'Payslip', label: 'Phân quyền', href: '/payroll-payslip' },
+        ],
+      },
+    ],
+  },
+  {
     key: 'Quản lý nhân sự',
-    label: 'HR Management',
+    label: 'Quản lý nhân sự',
     icon: LuCircuitBoard,
     children: [
       { key: 'Employee List', label: 'Danh sách nhân viên', href: '/employee' },
@@ -136,7 +147,7 @@ export const menuItemsData: MenuItemType[] = [
           { key: 'Main Attendance', label: 'Bảng chấm công', href: '/attendance-main' },
         ],
       },
-      { key: 'Department', label: 'Phòng/Ban', href: '/department' },
+      { key: 'Department', label: 'Phòng/Ban', href: '/admin/departments' },
       {
         key: 'Sales',
         label: 'Kinh doanh',
@@ -149,7 +160,7 @@ export const menuItemsData: MenuItemType[] = [
       },
       {
         key: 'Payroll',
-        label: 'Payroll',
+        label: 'Lương',
         href: '#',
         children: [
           { key: 'Employee Salary', label: 'Lương nhân viên', href: '/payroll-employee-salary' },
@@ -159,45 +170,65 @@ export const menuItemsData: MenuItemType[] = [
       },
     ],
   },
+  // {
+  //   key: 'Chat',
+  //   label: 'Chat',
+  //   icon: LuMessagesSquare,
+  //   href: '/chat',
+  // },
   {
-    key: 'Invoice',
-    label: 'Invoice',
-    icon: LuFileText,
-    children: [
-      { key: 'Overview', label: 'Overview', href: '/overview' },
-      { key: 'List Invoice', label: 'List Invoice', href: '/list' },
-      { key: 'Add Invoice', label: 'Add Invoice', href: '/add-new' },
-    ],
+    key: 'Calendar',
+    label: 'Lịch',
+    icon: LuCalendar1,
+    href: '/calendar',
   },
-  {
-    key: 'Users',
-    label: 'Users',
-    icon: LuSquareUserRound,
-    children: [
-      { key: 'List View', label: 'List View', href: '/users-list' },
-      { key: 'Grid View', label: 'Grid View', href: '/users-grid' },
-    ],
-  },
-  {
-    key: 'Extra',
-    label: 'Extra',
-    isTitle: true,
-  },
-  {
-    key: 'Pages',
-    label: 'Pages',
-    icon: LuCodesandbox,
-    children: [
-      { key: 'Starter Page', label: 'Starter Page', href: '/starter' },
-      { key: 'Pricing', label: 'Pricing', href: '/pricing' },
-      { key: 'FAQ', label: 'FAQ', href: '/faqs' },
-      { key: 'Maintenance', label: 'Maintenance', href: '/maintenance' },
-      { key: 'Timeline', label: 'Timeline', href: '/timeline' },
-      { key: 'Coming Soon', label: 'Coming Soon', href: '/coming-soon' },
-      { key: '404', label: '404', href: '/404' },
-      { key: 'Offline', label: 'Offline', href: '/offline' },
-    ],
-  },
+  // {
+  //   key: 'Email',
+  //   label: 'Email',
+  //   icon: LuMail,
+  //   href: '/mailbox',
+  // },
+  // {
+  //   key: 'Notes',
+  //   label: 'Ghi chú',
+  //   icon: LuClipboardList,
+  //   href: '/notes',
+  // },
+ 
+ 
+  
+  // {
+  //   key: 'Invoice',
+  //   label: 'Hóa đơn',
+  //   icon: LuFileText,
+  //   children: [
+  //     { key: 'Overview', label: 'Tổng quan', href: '/overview' },
+  //     { key: 'List Invoice', label: 'Danh sách hóa đơn', href: '/list' },
+  //     { key: 'Add Invoice', label: 'Thêm hóa đơn', href: '/add-new' },
+  //   ],
+  // },
+ 
+  // {
+  //   key: 'Extra',
+  //   label: 'Extra',
+  //   isTitle: true,
+  // },
+  // {
+  //   key: 'Pages',
+  //   label: 'Pages',
+  //   icon: LuCodesandbox,
+  //   children: [
+  //     { key: 'Starter Page', label: 'Starter Page', href: '/starter' },
+  //     { key: 'Pricing', label: 'Pricing', href: '/pricing' },
+  //     { key: 'FAQ', label: 'FAQ', href: '/faqs' },
+  //     { key: 'Maintenance', label: 'Maintenance', href: '/maintenance' },
+  //     { key: 'Timeline', label: 'Timeline', href: '/timeline' },
+  //     { key: 'Coming Soon', label: 'Coming Soon', href: '/coming-soon' },
+  //     { key: '404', label: '404', href: '/404' },
+  //     { key: '403', label: '403', href: '/403' },
+  //     { key: 'Offline', label: 'Offline', href: '/offline' },
+  //   ],
+  // },
   // {
   //   key: 'Basic Auth',
   //   label: 'Basic Auth',

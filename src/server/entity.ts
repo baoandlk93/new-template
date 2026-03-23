@@ -75,6 +75,10 @@ export interface IDepartment {
   id?: number;
   name?: string;
   description?: string;
+  head?: string;
+  phone?: string;
+  email?: string;
+  employees?: number;
 }
 export enum IClassification {
   A = "A",

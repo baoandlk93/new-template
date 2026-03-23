@@ -1,6 +1,6 @@
 import React from 'react';
-import logoDark from '@/assets/images/logo-dark.png';
-import logoLight from '@/assets/images/logo-light.png';
+import logoDark from '@/assets/images/logo-benh-vien-rmv-bg.png';
+import logoLight from '@/assets/images/logo-benh-vien-rmv-bg.png';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Metadata } from 'next';
@@ -11,15 +11,20 @@ const Page = () => {
     <div className="relative min-h-screen w-full flex justify-center items-center py-16 md:py-10">
       <div className="card md:w-lg w-screen z-10">
         <div className="text-center px-10 py-12">
-          <Link href="/index" className="flex justify-center">
-            <Image src={logoDark} alt="logo dark" className="h-6 flex dark:hidden" width={111} />
-            <Image src={logoLight} alt="logo light" className="h-6 hidden dark:flex" width={111} />
+          <Link href="/" className="flex justify-center">
+            <Image src={logoDark} alt="logo dark" className="h-full flex dark:hidden" width={100} />
+            <Image
+              src={logoLight}
+              alt="logo light"
+              className="h-full hidden dark:flex"
+              width={100}
+            />
           </Link>
 
           <div className="mt-8">
-            <h4 className="mb-2 text-primary text-xl font-semibold">Set a New Password</h4>
+            <h4 className="mb-2 text-primary text-xl font-semibold">Tạo mật khẩu mới</h4>
             <p className="text-base/normal mb-8 text-default-500">
-              Your new password should be distinct from any of your prior passwords
+              Mật khẩu mới của bạn nên khác với bất kỳ mật khẩu trước đó nào của bạn
             </p>
           </div>
 
@@ -29,9 +34,9 @@ const Page = () => {
                 htmlFor="Email"
                 className="inline-block mb-2 text-sm text-default-800 font-medium"
               >
-                Password
+                Mật khẩu
               </label>
-              <input type="text" id="Email" className="form-input" placeholder="Password" />
+              <input type="text" id="Email" className="form-input" placeholder="Mật khẩu" />
             </div>
 
             <div className="text-start mt-4">
@@ -39,29 +44,34 @@ const Page = () => {
                 htmlFor="Email"
                 className="inline-block mb-2 text-sm text-default-800 font-medium"
               >
-                Confirm Password
+                Xác nhận mật khẩu
               </label>
-              <input type="text" id="Email" className="form-input" placeholder="Confirm Password" />
+              <input
+                type="text"
+                id="Email"
+                className="form-input"
+                placeholder="Xác nhận mật khẩu"
+              />
             </div>
 
             <div className="flex items-center gap-2 mt-4">
               <input id="checkbox-1" type="checkbox" className="form-checkbox" />
               <label className="text-default-900 text-sm font-medium" htmlFor="checkbox-1">
-                Remember Me
+                Nhớ mật khẩu
               </label>
             </div>
 
             <div className="mt-8">
               <button type="button" className="btn bg-primary text-white w-full">
-                Reset Password
+                Tạo mật khẩu
               </button>
             </div>
             <div className="mt-4 text-center">
               <p className="text-base text-default-800">
-                Hold on, I've got my password...{' '}
+                Đã nhớ mật khẩu?{' '}
                 <Link href="/basic-login" className="text-primary underline">
                   {' '}
-                  Click here{' '}
+                  Đăng nhập ngay{' '}
                 </Link>
               </p>
             </div>

@@ -8,8 +8,9 @@ import HoverToggle from './HoverToggle';
 import logoDark from '@/assets/images/logo-benh-vien.jpeg';
 import logoLight from '@/assets/images/logo-benh-vien.jpeg';
 import logoSm from '@/assets/images/logo-benh-vien.jpeg';
+import { IUser } from '@/server/entity';
 
-const Sidebar = () => {
+const Sidebar = ({ user }: { user: IUser | null }) => {
   return (
     <aside id="app-menu" className="app-menu">
       <Link
@@ -31,7 +32,7 @@ const Sidebar = () => {
 
       <div className="relative min-h-0 flex-grow">
         <SimplebarClient className="size-full">
-          <AppMenu />
+          <AppMenu user={user} />
         </SimplebarClient>
       </div>
     </aside>

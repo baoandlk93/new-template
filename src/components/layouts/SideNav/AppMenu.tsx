@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { LuChevronRight } from 'react-icons/lu';
 import { menuItemsData, type MenuItemType } from './menu';
+import { IUser } from '@/server/entity';
 
 const isItemActive = (item: MenuItemType, pathname: string): boolean => {
   if (item.href && pathname === item.href) return true;
@@ -20,9 +21,7 @@ const MenuItemWithChildren = ({ item }: { item: MenuItemType }) => {
 
   return (
     <li className={`menu-item hs-accordion ${isActive ? 'active' : ''}`}>
-      <button
-        className={`hs-accordion-toggle menu-link ${isActive ? 'active' : ''}`}
-      >
+      <button className={`hs-accordion-toggle menu-link ${isActive ? 'active' : ''}`}>
         {Icon && (
           <span className="menu-icon">
             <Icon />
@@ -70,7 +69,7 @@ const MenuItem = ({ item }: { item: MenuItemType }) => {
   );
 };
 
-const AppMenu = () => {
+const AppMenu = ({ user }: { user: IUser | null }) => {
   return (
     <ul className="side-nav p-3 hs-accordion-group">
       {menuItemsData.map((item: MenuItemType) =>
